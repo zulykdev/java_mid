@@ -40,4 +40,12 @@ public class Bank {
         log.info("Banco: " + getNombre());
         log.info("Cuentas: " + getCuentas().size());
     }
+
+    public void menuOpciones() {
+        log.info("=== OPCIONES === Ingrese el numero de opcion");
+        log.info("1. Aperturar Cuenta");
+        log.info("2. Realizar Deposito");
+        log.info("3. Realizar Retiro");
+        log.info("4. Salir");
+    }
 }
