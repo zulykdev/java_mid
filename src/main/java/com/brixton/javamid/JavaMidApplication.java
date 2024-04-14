@@ -12,6 +12,8 @@ public class JavaMidApplication {
 
 		Bank scotia = new Bank("Scotiabank");
 
+		//scotia.abrirCuenta("BD", 500);
+
 		scotia.abrirCuenta("AB", 100);
 		scotia.depositarEnCuenta("AB", 50);
 		scotia.retirarDeCuenta("AB",300);

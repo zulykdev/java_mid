@@ -21,17 +21,18 @@ public class Bank {
 
     public void abrirCuenta(String nroCuenta, double balanceInicial) {
         Account ctaNueva = new Account(nroCuenta, balanceInicial);
-        cuentas.put(nroCuenta, ctaNueva);
+        getCuentas().put(nroCuenta, ctaNueva);
+
     }
 
     public void depositarEnCuenta(String nroCuenta, double amount) {
-        Account tempAccount = cuentas.get(nroCuenta);
+        Account tempAccount = getCuentas().get(nroCuenta);
         tempAccount.depositar(amount);
         //cuentas.get(nroCuenta).depositar(amount);
     }
 
     public void retirarDeCuenta(String nroCuenta, double amount) {
-        Account tempAccount = cuentas.get(nroCuenta);
+        Account tempAccount = getCuentas().get(nroCuenta);
         tempAccount.retirar(amount);
     }
 
