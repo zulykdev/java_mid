@@ -16,4 +16,20 @@ public class Persona {
     private DocumentoIdentidad documentoIdentidad;
     private LocalDate fechaNacimiento;
 
+    public Persona(String nombrex, String apellidoz) {
+        setNombre(nombrex);
+        setApellido(apellidoz);
+    }
+
+    public Persona(String nombre, String apellido, DocumentoIdentidad docu, LocalDate fnac) {
+        setNombre(nombre);
+        setApellido(apellido);
+        setDocumentoIdentidad(docu);
+        setFechaNacimiento(fnac);
+    }
+
+    public Persona() {
+
+    }
+
 }

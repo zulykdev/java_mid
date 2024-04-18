@@ -12,9 +12,15 @@ public class DocumentoIdentidad {
     private String tipo; //DNI, CE, PASAPORTE
     private String numero; //00000AAA00
 
-    /*public DocumentoIdentidad(String tipo, String numero) {
+    public DocumentoIdentidad(String tipo, String numero) {
        setNumero(numero);
        setTipo(tipo);
-    }*/
+    }
+
+    public DocumentoIdentidad() {
+
+    }
+
+
 
 }

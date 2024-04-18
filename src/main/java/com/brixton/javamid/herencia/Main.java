@@ -27,14 +27,22 @@ public class Main {
         DocumentoIdentidad dniPersona1 = new DocumentoIdentidad();
         dniPersona1.setNumero("70245555");
         dniPersona1.setTipo("DNI");
+
+        DocumentoIdentidad cex = new DocumentoIdentidad("CE", "554555555");
         //
-
-
-        persona1.setDocumentoIdentidad(dniPersona1);
-
-
-
+        //persona1.setDocumentoIdentidad(dniPersona1);
+        //persona1.setDocumentoIdentidad( cex );
+        persona1.setDocumentoIdentidad(new DocumentoIdentidad("CE", "05878556646465"));
         log.info("PERSONA 1"+ persona1);
+
+        Persona persona2 = new Persona("Hans", "V");
+        log.info("PERSONA 2 antes de colocar datos: "+ persona2);
+        persona2.setFechaNacimiento(LocalDate.of(2000,5,15));
+        persona2.setDocumentoIdentidad(new DocumentoIdentidad("CE", "05878556646465"));
+        log.info("PERSONA 2: " + persona2 );
+
+        Persona person3 = new Persona("YOSELIN","R", new DocumentoIdentidad("DNI", "05878565"), LocalDate.of(2000,5,15) );
+        log.info("PERSONA 3: "+ person3);
 
     }
 }
