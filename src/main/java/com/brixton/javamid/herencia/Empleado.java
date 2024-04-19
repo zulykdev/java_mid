@@ -21,4 +21,12 @@ public class Empleado extends Persona{
 
     }
 
+    public Empleado(String nombre, String apellido, DocumentoIdentidad documento, LocalDate fechaNacimiento, LocalDate fechaIng) {
+        setNombre(nombre);
+        setApellido(apellido);
+        setDocumentoIdentidad(documento);
+        setFechaNacimiento(fechaNacimiento);
+        setFechaIngreso(fechaIng);
+    }
+
 }

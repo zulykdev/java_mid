@@ -44,5 +44,10 @@ public class Main {
         Persona person3 = new Persona("YOSELIN","R", new DocumentoIdentidad("DNI", "05878565"), LocalDate.of(2000,5,15) );
         log.info("PERSONA 3: "+ person3);
 
+
+
+        Desarrollador des1 = new Desarrollador();
+        log.info("DESARROLLADOR: " + des1 + ", nombre: " + des1.getNombre());
+
     }
 }
