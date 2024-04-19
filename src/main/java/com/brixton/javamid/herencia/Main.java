@@ -44,9 +44,12 @@ public class Main {
         Persona person3 = new Persona("YOSELIN","R", new DocumentoIdentidad("DNI", "05878565"), LocalDate.of(2000,5,15) );
         log.info("PERSONA 3: "+ person3);
 
+        Empleado e1 = new Empleado("ISA","N", new DocumentoIdentidad("CE", "05878556646465"),LocalDate.of(2000,5,15),LocalDate.of(2024,4,18));
+        log.info("Empleado: {}", e1);
+        log.info("Empleado - Datos Persona: "
+                + e1.getNombre() + ", " + e1.getApellido() + ", " + e1.getFechaNacimiento());
 
-
-        Desarrollador des1 = new Desarrollador();
+        Desarrollador des1 = new Desarrollador("hans", "V", "Junior");
         log.info("DESARROLLADOR: " + des1 + ", nombre: " + des1.getNombre());
 
     }
