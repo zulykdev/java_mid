@@ -52,5 +52,12 @@ public class Main {
         Desarrollador des1 = new Desarrollador("hans", "V", "Junior");
         log.info("DESARROLLADOR: " + des1 + ", nombre: " + des1.getNombre());
 
+        //DisenadorGrafico dis = new DisenadorGrafico();
+        //DisenadorGrafico d = new DisenadorGrafico();
+
+        DisenadorGrafico d1 = new DisenadorGrafico();
+        d1.
+
+
     }
 }
