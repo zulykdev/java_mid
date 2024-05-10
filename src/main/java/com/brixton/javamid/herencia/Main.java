@@ -56,7 +56,7 @@ public class Main {
         //DisenadorGrafico d = new DisenadorGrafico();
 
         DisenadorGrafico d1 = new DisenadorGrafico();
-        d1.
+
 
 
     }

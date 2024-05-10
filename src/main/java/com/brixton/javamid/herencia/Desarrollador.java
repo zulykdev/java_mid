@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 @Getter
 @ToString
-public class Desarrollador extends Empleado {
+public class Desarrollador extends Empleado{
 
     String expertise;
     List<String> lenguajesProgramacion;
