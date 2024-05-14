@@ -4,18 +4,29 @@ public class DemoInterfaz {
 
     public static void main(String[] args) {
 
-        Emision matrimonio = new Matrimonio();
-        matrimonio.emitirMatrimonio();
+        Emision emitir1 = generate(1);
+        emitir1.emitir();
+        Emision emitir2 = generate(2);
+        emitir2.emitir();
+        Emision emitir3 = generate(3);
+        emitir3.emitir();
 
-        Emision defuncion = new Defuncion();
-        defuncion.emitirDefuncion();
+    }
 
-        Emision arbi = new AsientoContable();
-        arbi.emitirArbitrio();
-
-
-
-
-
+    public static Emision generate(int tipo){
+        /**
+         * 1 genera Matrimonio
+         * 2 genera Defuncion
+         * 3 genera AsientoContable
+         */
+        if(tipo == 1) {
+            return new Matrimonio();
+        }
+        else if (tipo == 2) {
+            return new Defuncion();
+        }
+        else {
+            return new AsientoContable();
+        }
     }
 }
