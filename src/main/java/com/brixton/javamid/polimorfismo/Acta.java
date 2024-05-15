@@ -6,4 +6,8 @@ public class Acta {
         System.out.println("actualiacion Datos");
     }
 
+    Acta() {
+
+    }
+
 }
