@@ -54,7 +54,7 @@ public class JavaMidApplication {
 			try {
 				System.out.println("RESULTADO DIVISION: " + (x / y));
 			} catch (Exception e) {
-				System.out.println("Error: " + e.getMessage());
+				System.out.println("Error ME001: " + e.getMessage());
 			}
 
 			System.out.println("=============");
@@ -71,9 +71,9 @@ public class JavaMidApplication {
 			int inputCaja2 = sc.nextInt();
 			System.out.println("valor de la caja 29:" + valores2[inputCaja2]);
 		} catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println("INGRESAS UN VALOR FUERA DEL RANGO");
+			System.out.println("ME002: INGRESAS UN VALOR FUERA DEL RANGO");
 		} catch (Exception e) {
-			System.out.println("SE PRODUJO UN ERROR INESPERADO");
+			System.out.println("ME003: SE PRODUJO UN ERROR INESPERADO");
 		}
 
 //		int num = 9;
