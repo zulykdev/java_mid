@@ -76,22 +76,32 @@ public class JavaMidApplication {
 			System.out.println("SE PRODUJO UN ERROR INESPERADO");
 		}
 
+//		int num = 9;
+//		switch (num) {
+//			case 1: System.out.println(); break;
+//			case 2: System.out.println(); break;
+//			default:
+//				System.out.println("no ingresar valor incorrecto");
+//		}
 
+		// String tarjeta = "1234567895556666";
+		// System.out.println("MOSTRANDO TEXTO1: " + tarjeta.substring(12));
+
+		System.out.println("INGRESA ALGO: (Minimo 3 letra)");
 		String texto1 = sc.next();
 
-		String tarjeta = "1234567895556666";
-		System.out.println("MOSTRANDO TEXTO1: " + tarjeta.substring(12));
-
-		System.out.println("MOSTRANDO TEXTO1: " + texto1.substring(8));
-
-
-
 		try {
-
-		} catch (StringIndexOutOfBoundsException e) {
-			throw new RuntimeException(e);
+			System.out.println("MOSTRANDO TEXTO1: " + texto1.substring(2));
+//			fILE.OPEN()....
+			//intento leer el archivo "que debe contener solo numeros"
+			// .......... hay una letra
+		} catch (Exception e) {
+			System.out.println("ERROR: " + e.getMessage());
+		} finally {
+			texto1 = "9999";
+//			file.close();
 		}
-
+		System.out.println("Valor de TEXTO1: " + texto1);
 
 	}
 
