@@ -17,7 +17,10 @@ public class ExcepcionControlada {
 
         try { //INTENTAR
             //Scanner input = new Scanner(new File("src/main/java/com/brixton/polimorfismo/img.png")); //ERROR
+            // ------> / Separador carpeta en windows
+            // ------> \ Separador carpeta en linux o MacOs
             Scanner input = new Scanner(new File("src/main/java/com/brixton/javamid/polimorfismo/imkg.png"));
+
             input.hasNext();
         } catch (FileNotFoundException e) { //ATRAPAR
             System.out.println("SE PRODUJO UNA EXCEPCION PORQUE NO EXISTE EL ARCHIVO");
