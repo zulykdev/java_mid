@@ -1,0 +1,6 @@
+#spring.application.name=input
+spring:
+  application:
+    name: 'input'
+server: 1000
+
