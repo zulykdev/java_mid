@@ -9,7 +9,7 @@ public class PetGenericRequestDTO {
 
     int id;
     String name;
-    String birthdate;
+    String brithdate;
     CategoryRequestDTO category;
     String status;
     int age;
