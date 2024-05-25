@@ -1,5 +1,6 @@
 package com.brixton.input.service;
 
+import com.brixton.input.controller.Persona;
 import org.apache.poi.ss.usermodel.*;
 import org.openxmlformats.schemas.spreadsheetml.x2006.main.WorksheetDocument;
 
@@ -11,6 +12,16 @@ import java.io.InputStream;
 public class ExcelService {
 
     public static void main(String[] args) {
+
+        Persona juanito = new Persona();
+        juanito.setNombre("Juan");
+        juanito.setEdad(25);;
+        juanito.setApellido("Salamanca");
+        System.out.println(juanito);
+
+
+
+
         ExcelService ex = new ExcelService();
         try {
             ex.construct();

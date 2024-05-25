@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.function.EntityResponse;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @RestController
 @Slf4j
 public class PetController {
@@ -20,6 +25,8 @@ public class PetController {
     @GetMapping("/pet")
     public PetResponseDTO getPets(){
         log.info("se llamó a getPets ");
+        List<String> lista = new ArrayList<>();
+        Map<String, String> mapa = new HashMap<>();
         PetResponseDTO EntityResponse;
         return new PetResponseDTO();
     }
