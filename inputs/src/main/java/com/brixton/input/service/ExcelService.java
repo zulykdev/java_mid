@@ -13,12 +13,14 @@ public class ExcelService {
 
     public static void main(String[] args) {
 
-        Persona juanito = new Persona();
-        juanito.setNombre("Juan");
-        juanito.setEdad(25);;
+        Persona juanito = new Persona("Pancho");
+        juanito.setEdad(25);
         juanito.setApellido("Salamanca");
+        System.out.println("Cantidad de Personas: " + Persona.getCantidadPersonas());
         System.out.println(juanito);
+        Persona jk = new Persona("JK");
 
+        System.out.println("Cantidad de Personas: " + Persona.getCantidadPersonas());
 
 
 

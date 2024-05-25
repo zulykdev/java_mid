@@ -9,9 +9,17 @@ import lombok.ToString;
 @ToString
 public class Persona {
 
+    static int cuentaPersonas = 0;
+    private static int cuentaPersona = 0;
+
     String nombre;
     int edad;
     String apellido;
+
+    public Persona(String nombre){
+        cuentaPersonas++;
+        setNombre(nombre);
+    }
 
     private void hacerAlgo() {
 
@@ -19,6 +27,11 @@ public class Persona {
 
     public void hacerNada() {
         hacerAlgo();
+    }
+
+    public static int getCantidadPersonas() {
+        cuentaPersona = 99;
+        return cuentaPersonas;
     }
 
 }
