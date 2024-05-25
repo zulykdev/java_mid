@@ -25,10 +25,11 @@ public class ExcelService {
         InputStream inp = new FileInputStream(file);
         Workbook wb = WorkbookFactory.create(inp);
         Sheet sheet = wb.getSheetAt(0);
+        System.out.println("Nombre del Sheet |Hoja| : " + sheet.getSheetName());
+
         int iRow = 0;
         Row row = sheet.getRow(iRow); //En qué fila empezar ya dependerá también de si tenemos, por ejemplo, el título de cada columna en la primera fila
-        while(row!=null)
-        {
+        while(row!=null) {
             Cell cell = row.getCell(0);
             String value = cell.getStringCellValue();
             System.out.println("Valor de la celda es " + value);
