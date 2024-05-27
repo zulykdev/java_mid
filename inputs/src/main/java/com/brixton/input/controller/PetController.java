@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/v1/pet")
 @Slf4j
 public class PetController{
 
@@ -22,12 +23,12 @@ public class PetController{
     Map<String, PetResponseDTO> petOutputs = new HashMap<>();
 
     /**
-     * endpoint: PUT | /pet/{idPet}
+     * endpoint: PUT | /{idPet}
      * Actualizar la informacion de un Pet
      * @return 200 + objeto actualizado
      *          404 Si no se pudo actualizar
      */
-    @PutMapping("/pet/{idPet}")
+    @PutMapping("/{idPet}")
     public ResponseEntity<PetResponseDTO> updatePet(@PathVariable int idPet, @RequestBody PetGenericRequestDTO petAActualizar) {
         /**
          * Proceso de eliminar mascota
@@ -52,12 +53,12 @@ public class PetController{
 
 
     /**
-     * endpoint: DELETE | /pet/{idPet}
+     * endpoint: DELETE | /{idPet}
      * Elimina un Pet
      * @return  204 si se elimino con exito
      *          404 si no se pudo eliminar -no se encontro el pet, -identificador malformado-
      */
-    @DeleteMapping("/pet/{idPet}")
+    @DeleteMapping("/{idPet}")
     public ResponseEntity deletePet(@PathVariable int idPet){
         /**
          * Proceso de eliminar mascota
@@ -75,11 +76,11 @@ public class PetController{
     }
 
     /**
-     * endpoint: GET | /pet
+     * endpoint: GET | /
      * Obtiene la lista de pets registrados.
      * @return
      */
-    @GetMapping("/pet")
+    @GetMapping("/")
     public ResponseEntity<List<PetResponseDTO>> getPets(){
         /**
          * Proceso de Obtener mascotas
@@ -94,12 +95,12 @@ public class PetController{
     }
 
     /**
-     * endpoint: GET | /pet/{idPet}
+     * endpoint: GET | /{idPet}
      * Obtiene la mascota encontrada, sino devuelve 404 (Not Found)
      * @param idPet
      * @return
      */
-    @GetMapping("/pet/{idPet}")
+    @GetMapping("/{idPet}")
     public ResponseEntity<PetResponseDTO> getPets(@PathVariable int idPet){
         /**
          * Proceso de Obtener 1 mascotas
@@ -117,12 +118,12 @@ public class PetController{
 
 
     /**
-     * endpoint: POST | /pet
+     * endpoint: POST | /
      * Registra Pet
      * @param input Contiene la informacion del Pet
      * @return El Pet creado + fecha creacion (createdAt)
      */
-    @PostMapping("/pet")
+    @PostMapping("/")
     public ResponseEntity<PetResponseDTO> createPet(@RequestBody PetGenericRequestDTO input){
         /**
          * Proceso de Registro De Mascotas:
