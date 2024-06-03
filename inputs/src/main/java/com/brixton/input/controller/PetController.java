@@ -2,7 +2,9 @@ package com.brixton.input.controller;
 
 import com.brixton.input.dto.request.PetGenericRequestDTO;
 import com.brixton.input.dto.response.PetResponseDTO;
+import com.brixton.input.service.PetService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,8 @@ import java.util.Map;
 @Slf4j
 public class PetController{
 
+    @Autowired
+    private PetService petService;
     Map<String, PetGenericRequestDTO> petInputs = new HashMap<>();
     Map<String, PetResponseDTO> petOutputs = new HashMap<>();
 
@@ -38,7 +42,7 @@ public class PetController{
          */
         PetResponseDTO petTemporal = petOutputs.get(String.valueOf(idPet)); //Paso 1.
         if (petTemporal != null) { //En caso Exista
-            petTemporal.setBirthdate(petAActualizar.getBrithdate());
+            petTemporal.setBirthdate(petAActualizar.getBirthdate());
             // petTemporal.setId(); //No debe hacerse porque se altera el identificador
             petTemporal.setName(petAActualizar.getName());
             petTemporal.setCategory(petAActualizar.getCategory());
@@ -133,16 +137,17 @@ public class PetController{
          * 3. Almacenar el objeto creado anteriormente (paso 2) en una coleccion, petOutputs
          * 4. Devuelvo el objeto creado (paso 2)
          */
-        petInputs.put(String.valueOf(input.getId()), input);
-        //Almacena la informacion para ser devuelta -response-
+        petService.savePet(input);
+//        petInputs.put(String.valueOf(input.getId()), input);
+//        //Almacena la informacion para ser devuelta -response-
         PetResponseDTO ptr = new PetResponseDTO();
-        ptr.setId(input.getId());
-        ptr.setName(input.getName());
-        ptr.setCategory(input.getCategory());
-        ptr.setStatus(input.getStatus());
-        ptr.setCreatedAt(LocalDate.now().toString());
-        ptr.setBirthdate(input.getBrithdate());
-        petOutputs.put(String.valueOf(input.getId()), ptr);
+//        ptr.setId(input.getId());
+//        ptr.setName(input.getName());
+//        ptr.setCategory(input.getCategory());
+//        ptr.setStatus(input.getStatus());
+//        ptr.setCreatedAt(LocalDate.now().toString());
+//        ptr.setBirthdate(input.getBrithdate());
+//        petOutputs.put(String.valueOf(input.getId()), ptr);
         //return ResponseEntity.ok(ptr);
         //return new ResponseEntity<>(HttpStatusCode.valueOf(204));
         return ResponseEntity.ok(ptr);

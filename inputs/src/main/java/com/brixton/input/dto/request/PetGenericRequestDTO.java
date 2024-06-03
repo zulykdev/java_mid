@@ -1,5 +1,6 @@
 package com.brixton.input.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -9,10 +10,12 @@ public class PetGenericRequestDTO {
 
     int id;
     String name;
-    String brithdate;
+    String birthdate;
     CategoryRequestDTO category;
     String status;
+    @JsonIgnore
     int age;
+    @JsonIgnore
     String color;
 
 }

@@ -2,16 +2,18 @@ package com.brixton.input.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDate;
 
 @Setter
 @Getter
-public class Pet {
+@ToString
+public class Pet extends ObjectAudit{
 
     int id;
     String name;
     LocalDate birthdate;
     Category category;
-    StatusType status;
+    PetStatusType status;
 }

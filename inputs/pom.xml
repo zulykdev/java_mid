@@ -54,7 +54,62 @@
 			<version>4.1.2</version>
 		</dependency>
 
-    </dependencies>
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>openapi-generator</artifactId>
+			<version>6.0.1</version>
+		</dependency>
+
+		<!-- Dependencia de Gson -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.9</version> <!-- Verifica la versión más reciente en el repositorio central de Maven -->
+		</dependency>
+
+		<!-- Dependencia para javax.annotation -->
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+
+		<!-- Dependencias necesarias para el código generado -->
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+			<version>0.2.1</version> <!-- Versión de la dependencia -->
+		</dependency>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>1.6.5</version>
+		</dependency>
+
+
+<!--		&lt;!&ndash; Dependencia de Jackson Core &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>com.fasterxml.jackson.core</groupId>-->
+<!--			<artifactId>jackson-core</artifactId>-->
+<!--			<version>2.13.3</version> &lt;!&ndash; Usa la versión más reciente disponible &ndash;&gt;-->
+<!--		</dependency>-->
+
+<!--		&lt;!&ndash; Dependencia de Jackson Databind &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>com.fasterxml.jackson.core</groupId>-->
+<!--			<artifactId>jackson-databind</artifactId>-->
+<!--			<version>2.13.3</version> &lt;!&ndash; Usa la versión más reciente disponible &ndash;&gt;-->
+<!--		</dependency>-->
+
+<!--		&lt;!&ndash; Dependencia de Jackson Annotations &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>com.fasterxml.jackson.core</groupId>-->
+<!--			<artifactId>jackson-annotations</artifactId>-->
+<!--			<version>2.13.3</version> &lt;!&ndash; Usa la versión más reciente disponible &ndash;&gt;-->
+<!--		</dependency>-->
+
+
+	</dependencies>
 
 	<build>
 		<plugins>
@@ -68,6 +123,39 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>pet-openapi-generator</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<inputSpec>${project.basedir}/src/main/resources/openapi/pet.yaml</inputSpec>
+					<generatorName>java</generatorName>
+					<library>retrofit2</library>
+					<generateApis>false</generateApis>
+					<generateApiTests>false</generateApiTests>
+					<generateSupportingFiles>false</generateSupportingFiles>
+					<generateModelDocumentation>false</generateModelDocumentation>
+					<generateModels>true</generateModels>
+					<generateModelTests>false</generateModelTests>
+					<configOptions>
+						<sourceFolder>/</sourceFolder>
+						<apiPackages>${project.groupId}.input.proxy.contracts</apiPackages>
+						<configPackage>${project.groupId}.input.config</configPackage>
+						<configPackage>${project.groupId}.input.model.thirdparty.pet</configPackage>
+					</configOptions>
+					<addCompileSourceRoot>true</addCompileSourceRoot>
+					<modelPackage>${project.groupId}.input.model.thirdparty.pet</modelPackage>
+					<output>${project.build.directory}/generated-sources/openapi</output>
+					<!-- Otras configuraciones adicionales -->
 				</configuration>
 			</plugin>
 		</plugins>
