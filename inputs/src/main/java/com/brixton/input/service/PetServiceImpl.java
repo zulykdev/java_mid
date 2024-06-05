@@ -28,7 +28,7 @@ public class PetServiceImpl implements  PetService{
     }
 
     @Override
-    public Object savePet(PetGenericRequestDTO input) {
+    public Object savePet(PetGenericRequestDTO petForSave) {
         log.info("LLEGUE A ISAIIMPL");
         //Ingreso un DTO --- PetGenericRequestDTO
         //Convertir el PetGenericRequestDTO en Pet
@@ -36,42 +36,10 @@ public class PetServiceImpl implements  PetService{
         // 1. Utilizar un ObjectMapper (una libreria Jackson)
         // 2. MapStruct (Libreria en desarrollo vigente)
         // 3. Copia de valores uno a uno
-
-
-
-        /*
-        Pet pet = new Pet();
-        pet.setId(input.getId());
-        pet.setBirthdate(input.getBirthdate());
-        pet.setName(input.getName());
-        pet.setCategory(input.getCategory());
-        pet.setStatus(input.getStatus());
-        */
-
-        Category category = new Category();
-        category.setId(input.getCategory().getId());
-        category.setName(input.getCategory().getName());
-
-
-
-
-
-
-//        ptr.setId(input.getId());
-//        ptr.setName(input.getName());
-//        ptr.setCategory(input.getCategory());
-//        ptr.setStatus(input.getStatus());
-//        ptr.setCreatedAt(LocalDate.now().toString());
-//        ptr.setBirthdate(input.getBrithdate());
-//        petOutputs.put(String.valueOf(input.getId()), ptr);
-
-
         try {
-            String json = objectMapper.writeValueAsString(petForSave);
-            log.info("json savePet: {}", json);
-            Pet pet = objectMapper.readValue(json, Pet.class);
-            log.info("Pet: {}", pet);
-
+            String source = objectMapper.writeValueAsString(petForSave);
+            Pet pet = objectMapper.readValue(source, Pet.class);
+            log.info(pet.toString());
         } catch(Exception e) {
             e.printStackTrace();
         }
