@@ -1,10 +1,8 @@
 package com.brixton.input.service;
 
-import com.brixton.input.dto.request.CategoryRequestDTO;
 import com.brixton.input.dto.request.PetGenericRequestDTO;
 import com.brixton.input.model.Category;
 import com.brixton.input.model.Pet;
-import com.brixton.input.model.PetStatusType;
 import com.brixton.input.model.mappers.CustomDateDeserializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -21,9 +19,17 @@ import java.util.Map;
 public class PetServiceImpl implements  PetService{
 
     Map<String, PetGenericRequestDTO> petInputs = new HashMap<>();
+    ObjectMapper objectMapper = new ObjectMapper();
+    SimpleModule module = new SimpleModule();
+
+    public PetServiceImpl() {
+        module.addDeserializer(LocalDate.class, new CustomDateDeserializer());
+        objectMapper.registerModule(module);
+    }
 
     @Override
-    public Object savePet(PetGenericRequestDTO petForSave) {
+    public Object savePet(PetGenericRequestDTO input) {
+        log.info("LLEGUE A ISAIIMPL");
         //Ingreso un DTO --- PetGenericRequestDTO
         //Convertir el PetGenericRequestDTO en Pet
         //Conversion de un DTO a una clase de Dominio y viceversa
@@ -31,11 +37,33 @@ public class PetServiceImpl implements  PetService{
         // 2. MapStruct (Libreria en desarrollo vigente)
         // 3. Copia de valores uno a uno
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        SimpleModule module = new SimpleModule();
-        module.addDeserializer(LocalDate.class, new CustomDateDeserializer());
-        objectMapper.registerModule(module);
 
+
+        /*
+        Pet pet = new Pet();
+        pet.setId(input.getId());
+        pet.setBirthdate(input.getBirthdate());
+        pet.setName(input.getName());
+        pet.setCategory(input.getCategory());
+        pet.setStatus(input.getStatus());
+        */
+
+        Category category = new Category();
+        category.setId(input.getCategory().getId());
+        category.setName(input.getCategory().getName());
+
+
+
+
+
+
+//        ptr.setId(input.getId());
+//        ptr.setName(input.getName());
+//        ptr.setCategory(input.getCategory());
+//        ptr.setStatus(input.getStatus());
+//        ptr.setCreatedAt(LocalDate.now().toString());
+//        ptr.setBirthdate(input.getBrithdate());
+//        petOutputs.put(String.valueOf(input.getId()), ptr);
 
 
         try {

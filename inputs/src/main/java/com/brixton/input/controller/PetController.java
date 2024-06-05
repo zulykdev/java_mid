@@ -3,14 +3,12 @@ package com.brixton.input.controller;
 import com.brixton.input.dto.request.PetGenericRequestDTO;
 import com.brixton.input.dto.response.PetResponseDTO;
 import com.brixton.input.service.PetService;
-import com.brixton.input.service.PetServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,8 +20,8 @@ import java.util.Map;
 @Slf4j
 public class PetController{
 
-    //@Autowired
-    private PetService petService = new PetServiceImpl();
+    @Autowired
+    private PetService petService;
     Map<String, PetGenericRequestDTO> petInputs = new HashMap<>();
     Map<String, PetResponseDTO> petOutputs = new HashMap<>();
 
