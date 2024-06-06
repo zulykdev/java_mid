@@ -1,13 +1,16 @@
 package com.brixton.input.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
 public class ObjectAudit {
 
-    LocalDateTime createdAt;
-    String createdBy;
-
-    LocalDateTime updatedAt;
-
-    String updatedBy;
+    private LocalDateTime createdAt;
+    private String createdBy;
+    private LocalDateTime updatedAt;
+    private String updatedBy;
 }

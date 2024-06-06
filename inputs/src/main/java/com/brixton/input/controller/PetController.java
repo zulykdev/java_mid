@@ -22,8 +22,7 @@ public class PetController{
 
     @Autowired
     private PetService petService;
-    Map<String, PetGenericRequestDTO> petInputs = new HashMap<>();
-    Map<String, PetResponseDTO> petOutputs = new HashMap<>();
+
 
     /**
      * endpoint: PUT | /{idPet}
@@ -127,7 +126,7 @@ public class PetController{
      * @return El Pet creado + fecha creacion (createdAt)
      */
     @PostMapping("/")
-    public ResponseEntity<PetResponseDTO> createPet(@RequestBody PetGenericRequestDTO input){
+    public ResponseEntity<Object> createPet(@RequestBody PetGenericRequestDTO input){
         /**
          * Proceso de Registro De Mascotas:
          * 1. Almacena el valor de entrada en una coleccion, petInputs
@@ -136,21 +135,23 @@ public class PetController{
          * 3. Almacenar el objeto creado anteriormente (paso 2) en una coleccion, petOutputs
          * 4. Devuelvo el objeto creado (paso 2)
          */
-        petService.savePet(input);
+        ;
 
 //        petInputs.put(String.valueOf(input.getId()), input);
 //        //Almacena la informacion para ser devuelta -response-
-        PetResponseDTO ptr = new PetResponseDTO();
+//        PetResponseDTO ptr = new PetResponseDTO();
 //        ptr.setId(input.getId());
 //        ptr.setName(input.getName());
 //        ptr.setCategory(input.getCategory());
 //        ptr.setStatus(input.getStatus());
-//        ptr.setCreatedAt(LocalDate.now().toString());
 //        ptr.setBirthdate(input.getBrithdate());
+
+//        ptr.setCreatedAt(LocalDate.now().toString());
+
 //        petOutputs.put(String.valueOf(input.getId()), ptr);
         //return ResponseEntity.ok(ptr);
         //return new ResponseEntity<>(HttpStatusCode.valueOf(204));
-        return ResponseEntity.ok(ptr);
+        return ResponseEntity.ok(petService.savePet(input));
     }
 
 }

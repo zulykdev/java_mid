@@ -1,7 +1,7 @@
 package com.brixton.input.service;
 
 import com.brixton.input.dto.request.PetGenericRequestDTO;
-import com.brixton.input.model.Category;
+import com.brixton.input.dto.response.PetResponseDTO;
 import com.brixton.input.model.Pet;
 import com.brixton.input.model.mappers.CustomDateDeserializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,14 @@ import java.util.Map;
 @Service
 public class PetServiceImpl implements  PetService{
 
+    private static final String USER_APP = "BRIXTON";
+
     Map<String, PetGenericRequestDTO> petInputs = new HashMap<>();
+    Map<String, PetResponseDTO> petOutputs = new HashMap<>();
+
+
+    Map<Integer, Pet> pets = new HashMap<>();
+
     ObjectMapper objectMapper = new ObjectMapper();
     SimpleModule module = new SimpleModule();
 
@@ -29,7 +37,6 @@ public class PetServiceImpl implements  PetService{
 
     @Override
     public Object savePet(PetGenericRequestDTO petForSave) {
-        log.info("LLEGUE A ISAIIMPL");
         //Ingreso un DTO --- PetGenericRequestDTO
         //Convertir el PetGenericRequestDTO en Pet
         //Conversion de un DTO a una clase de Dominio y viceversa
@@ -39,16 +46,16 @@ public class PetServiceImpl implements  PetService{
         try {
             String source = objectMapper.writeValueAsString(petForSave);
             Pet pet = objectMapper.readValue(source, Pet.class);
-            log.info(pet.toString());
+            pet.setCreatedAt(LocalDateTime.now());
+            pet.setCreatedBy(USER_APP);
+            pets.put(pet.getId(), pet);
+
+            String sourceOutput = objectMapper.writeValueAsString(pet);
+            PetResponseDTO output = objectMapper.readValue(sourceOutput, PetResponseDTO.class);
+            return output;
         } catch(Exception e) {
             e.printStackTrace();
         }
-
-
-
-
-
-        //Al devolver la informacion PetResponseDTO
         return null;
     }
 

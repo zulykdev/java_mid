@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @ToString
 public class Pet extends ObjectAudit{
 
-    int id;
+    Integer id;
     String name;
     LocalDate birthdate;
     Category category;
