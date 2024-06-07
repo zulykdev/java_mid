@@ -14,6 +14,8 @@ public class PetResponseDTO {
     CategoryRequestDTO category;
     String status;
     String createdAt;
+    String createdBy;
     String updatedAt;
+    String updatedBy;
 
 }
