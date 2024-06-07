@@ -31,27 +31,18 @@ public class PetController{
      *          404 Si no se pudo actualizar
      */
     @PutMapping("/{idPet}")
-    public ResponseEntity<PetResponseDTO> updatePet(@PathVariable int idPet, @RequestBody PetGenericRequestDTO petAActualizar) {
+    public ResponseEntity<Object> updatePet(@PathVariable int idPet, @RequestBody PetGenericRequestDTO petForUpdate) {
         /**
          * Proceso de eliminar mascota
          * 1. Buscar el Pet utilizando el Id ingresado
          * 2. En caso exista: Acualizar la información en el objeto encontrado
          * 3. En caso no exista: devolver 404
-         *//*
-        PetResponseDTO petTemporal = petOutputs.get(String.valueOf(idPet)); //Paso 1.
-        if (petTemporal != null) { //En caso Exista
-            petTemporal.setBirthdate(petAActualizar.getBirthdate());
-            // petTemporal.setId(); //No debe hacerse porque se altera el identificador
-            petTemporal.setName(petAActualizar.getName());
-            petTemporal.setCategory(petAActualizar.getCategory());
-            //petTemporal.setCreatedAt();//No debe hacerse porque se altera la fecha de creacion
-            petTemporal.setStatus(petAActualizar.getStatus());
-            petTemporal.setUpdatedAt(LocalDateTime.now().toString());
-            return ResponseEntity.ok(petTemporal);
-        } else {
-            return new ResponseEntity<>(HttpStatusCode.valueOf(404));
-        }*/
-        return null;
+         */
+        Object petUpdated = petService.updatePet(idPet, petForUpdate);
+        if (petUpdated != null) {
+            return ResponseEntity.ok(petUpdated);
+        }
+        return new ResponseEntity<>(HttpStatusCode.valueOf(404));
     }
 
 
@@ -68,15 +59,12 @@ public class PetController{
          * 1. Buscar el Pet utilizando el Id ingresado
          * 2. En caso exista: debe eliminarse y devolver 204.
          * 3. En caso no exista: devolver 404
-         *//*
-        PetResponseDTO petTemporal = petOutputs.get(String.valueOf(idPet)); //Paso 1.
-        if (petTemporal != null) {
-            petOutputs.remove(String.valueOf(idPet));
+         */
+        boolean successfull = petService.deletePet(idPet);
+        if (successfull) {
             return new ResponseEntity<>(HttpStatusCode.valueOf(204)); //Paso 2.
-        } else{
-            return new ResponseEntity<>(HttpStatusCode.valueOf(404));
-        }*/
-        return null;
+        }
+        return new ResponseEntity<>(HttpStatusCode.valueOf(404));
     }
 
     /**
@@ -85,19 +73,8 @@ public class PetController{
      * @return
      */
     @GetMapping("/")
-    public ResponseEntity<List<PetResponseDTO>> getPets(){
-        /**
-         * Proceso de Obtener mascotas
-         * 1. Convertir el Mapa de petOutputs a una Lista
-         * 2. Devolver la lista
-         */
-        /*
-        List<PetResponseDTO> petResponseTemps = new ArrayList<>();
-        petResponseTemps.addAll(petOutputs.values());
-
-        //return ResponseEntity.ok(new ArrayList<>(petOutputs.values()));
-        return ResponseEntity.ok(petResponseTemps);*/
-        return null;
+    public ResponseEntity<List<Object>> getPets(){
+        return ResponseEntity.ok(petService.getPets());
     }
 
     /**
@@ -107,20 +84,13 @@ public class PetController{
      * @return
      */
     @GetMapping("/{idPet}")
-    public ResponseEntity<PetResponseDTO> getPets(@PathVariable int idPet){
-        /**
-         * Proceso de Obtener 1 mascotas
-         * 1. Buscar el ID en el Map
-         * 2. En caso exista: Devolver la informacion del Paso 1
-         * 3. En caso no exista: Mensaje indicando que no se encontró
-         */
-        /*PetResponseDTO petTemporal = petOutputs.get(String.valueOf(idPet)); //Paso 1.
-        if (petTemporal != null) {
-            return ResponseEntity.ok(petTemporal); //Paso 2.
+    public ResponseEntity<Object> getPet(@PathVariable int idPet){
+        Object petFound = petService.getPet(idPet);
+        if (petFound != null) {
+            return ResponseEntity.ok(petFound);
         } else{
             return new ResponseEntity<>(HttpStatusCode.valueOf(404));
-        }*/
-        return null;
+        }
     }
 
 

@@ -5,6 +5,7 @@ import com.brixton.input.dto.response.PetResponseDTO;
 import com.brixton.input.model.Pet;
 import com.brixton.input.model.mappers.CustomDateDeserializer;
 import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -13,19 +14,21 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Slf4j
 @Service
-public class PetServiceImpl implements  PetService{
+public class PetServiceImpl implements PetService{
 
     private static final String USER_APP = "BRIXTON";
 
@@ -80,17 +83,60 @@ public class PetServiceImpl implements  PetService{
     }
 
     @Override
-    public Object updatePet(PetGenericRequestDTO petForUpdate) {
+    public Object updatePet(int idPet, PetGenericRequestDTO petForUpdate) {
+        try {
+            String jsonInput = objectMapper.writeValueAsString(petForUpdate);
+            Pet petTemporal = objectMapper.readValue(jsonInput, Pet.class);
+
+            Pet original = pets.get(idPet);
+            if (original != null) {
+                original.setName(petTemporal.getName());
+                original.setStatus(petTemporal.getStatus());
+                original.setCategory(petTemporal.getCategory());
+                original.setBirthdate(petTemporal.getBirthdate());
+                original.setUpdatedAt(LocalDateTime.now());
+                original.setUpdatedBy(USER_APP);
+                String jsonOutput = objectMapper.writeValueAsString(original);
+                PetResponseDTO output = objectMapper.readValue(jsonOutput, PetResponseDTO.class);
+                return output;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public List<Object> getPets() {
+        List<Object> petFounds = new ArrayList<>();
+        for(Pet pet : pets.values()) {
+            try {
+                String jsonOutput = objectMapper.writeValueAsString(pet);
+                PetResponseDTO output = objectMapper.readValue(jsonOutput, PetResponseDTO.class);
+                petFounds.add(output);
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+        }
+        return petFounds;
+    }
+
+    @Override
+    public Object getPet(int idPet) {
+        Pet petFound = pets.get(idPet);
+        try {
+            String jsonOutput = objectMapper.writeValueAsString(petFound);
+            PetResponseDTO output = objectMapper.readValue(jsonOutput, PetResponseDTO.class);
+            return output;
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
-    public Object deletePet(int idPet) {
-        return null;
+    public boolean deletePet(int idPet) {
+        Pet petToRemove = pets.remove(idPet);
+        return (petToRemove == null ? false : true);
     }
 }

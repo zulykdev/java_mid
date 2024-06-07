@@ -9,10 +9,12 @@ public interface PetService {
 
     Object savePet(PetGenericRequestDTO petForSave);
 
-    Object updatePet(PetGenericRequestDTO petForUpdate);
+    Object updatePet(int idPet, PetGenericRequestDTO petForUpdate);
 
     List<Object> getPets();
 
-    Object deletePet(int idPet);
+    Object getPet(int idPet);
+
+    boolean deletePet(int idPet);
 
 }
