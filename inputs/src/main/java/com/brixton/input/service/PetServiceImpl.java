@@ -63,14 +63,15 @@ public class PetServiceImpl implements  PetService{
         // 2. MapStruct (Libreria en desarrollo vigente)
         // 3. Copia de valores uno a uno
         try {
-            String source = objectMapper.writeValueAsString(petForSave);
-            Pet pet = objectMapper.readValue(source, Pet.class);
+            String jsonInput = objectMapper.writeValueAsString(petForSave);
+
+            Pet pet = objectMapper.readValue(jsonInput, Pet.class);
             pet.setCreatedAt(LocalDateTime.now());
             pet.setCreatedBy(USER_APP);
             pets.put(pet.getId(), pet);
 
-            String sourceOutput = objectMapper.writeValueAsString(pet);
-            PetResponseDTO output = objectMapper.readValue(sourceOutput, PetResponseDTO.class);
+            String jsonOutput = objectMapper.writeValueAsString(pet);
+            PetResponseDTO output = objectMapper.readValue(jsonOutput, PetResponseDTO.class);
             return output;
         } catch(Exception e) {
             e.printStackTrace();
